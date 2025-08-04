@@ -1,15 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/lib/auth-context';
+import ProtectedRoute from '@/app/components/ProtectedRoute';
 
-export default function Dashboard() {
-  const [user] = useState({
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: '/api/placeholder/40/40'
-  });
-
+function DashboardContent() {
+  const { user, signOut } = useAuth();
+  
   const [stats] = useState([
     { label: 'Total Projects', value: '12', change: '+2.5%', positive: true },
     { label: 'Active Tasks', value: '28', change: '+8.1%', positive: true },
@@ -66,18 +64,27 @@ export default function Dashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5-5-5h5V7h10v10z" />
                 </svg>
               </button>
-              <button className="text-gray-500 hover:text-gray-700">
+              <button 
+                onClick={() => signOut()}
+                className="text-gray-500 hover:text-gray-700"
+                title="Sign out"
+              >
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5-5-5h5V7h10v10z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
               </button>
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                  {user.name.split(' ').map(n => n[0]).join('')}
+                  {user?.user_metadata?.first_name?.[0] || user?.email?.[0]?.toUpperCase() || 'U'}
                 </div>
                 <div className="hidden md:block">
-                  <p className="text-sm font-medium text-gray-700">{user.name}</p>
-                  <p className="text-xs text-gray-500">{user.email}</p>
+                  <p className="text-sm font-medium text-gray-700">
+                    {user?.user_metadata?.first_name && user?.user_metadata?.last_name 
+                      ? `${user.user_metadata.first_name} ${user.user_metadata.last_name}`
+                      : user?.email?.split('@')[0] || 'User'
+                    }
+                  </p>
+                  <p className="text-xs text-gray-500">{user?.email}</p>
                 </div>
               </div>
             </div>
@@ -238,5 +245,13 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <ProtectedRoute>
+      <DashboardContent />
+    </ProtectedRoute>
   );
 }
