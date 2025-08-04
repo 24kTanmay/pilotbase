@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,21 +18,24 @@ export default function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+            <Link href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
               Home
-            </a>
-            <a href="#about" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
-              About
-            </a>
-            <a href="#services" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
-              Services
-            </a>
+            </Link>
+            <Link href="/explore" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+              Explore
+            </Link>
+            <Link href="/dashboard" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+              Dashboard
+            </Link>
             <a href="#contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
               Contact
             </a>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+            <Link href="/login" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+              Login
+            </Link>
+            <Link href="/register" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -51,21 +55,24 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
+              <Link href="/" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
                 Home
-              </a>
-              <a href="#about" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
-                About
-              </a>
-              <a href="#services" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
-                Services
-              </a>
+              </Link>
+              <Link href="/explore" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
+                Explore
+              </Link>
+              <Link href="/dashboard" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
+                Dashboard
+              </Link>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
                 Contact
               </a>
-              <button className="w-full text-left bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 text-sm font-medium">
+              <Link href="/login" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-sm font-medium">
+                Login
+              </Link>
+              <Link href="/register" className="w-full text-left bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 text-sm font-medium rounded">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
         )}
