@@ -30,14 +30,19 @@ export default function Login() {
     setLoading(true);
     setError('');
 
-    const { data, error } = await signIn(formData.email, formData.password);
-    
-    if (error) {
-      setError(error.message);
+    try {
+      const { data, error } = await signIn(formData.email, formData.password);
+      
+      if (error) {
+        setError(error.message);
+      } else {
+        // Redirect to dashboard on successful login
+        router.push('/dashboard');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
       setLoading(false);
-    } else {
-      // Redirect to dashboard on successful login
-      router.push('/dashboard');
     }
   };
 
@@ -81,7 +86,7 @@ export default function Login() {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={loading}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:opacity-50"
+                  className="form-field"
                   placeholder="Enter your email"
                 />
               </div>
@@ -91,7 +96,7 @@ export default function Login() {
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative">
                 <input
                   id="password"
                   name="password"
@@ -101,7 +106,7 @@ export default function Login() {
                   value={formData.password}
                   onChange={handleChange}
                   disabled={loading}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:opacity-50"
+                  className="password-field"
                   placeholder="Enter your password"
                 />
               </div>
