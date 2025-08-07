@@ -22,13 +22,29 @@ export default function HeroCard() {
           <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Streamline your workflow with our innovative platform designed to help you achieve more with less effort.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-black text-white hover:bg-gray-800 px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition duration-300">
-              Get Started Free
-            </button>
-            <button className="border-2 border-black text-black hover:bg-black hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-300">
-              Learn More
-            </button>
+          
+          {/* CTA Section with focused radial background */}
+          <div className="relative">
+            {/* Strong radial fade overlay behind CTA buttons - centered to website */}
+            <div 
+              className="absolute -z-10" 
+              style={{
+                left: '50%',
+                top: '50%',
+                width: '1260px',
+                height: '360px',
+                transform: 'translate(-50%, -50%)',
+                background: 'radial-gradient(ellipse 1260px 360px at center, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, transparent 80%)'
+              }}
+            ></div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+              <button className="bg-black text-white hover:bg-gray-800 px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition duration-300">
+                Get Started Free
+              </button>
+              <button className="border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 px-4 py-2 rounded-lg text-sm font-medium transition duration-300">
+                Learn More
+              </button>
+            </div>
           </div>
         </div>
         

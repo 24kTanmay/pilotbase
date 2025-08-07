@@ -63,6 +63,10 @@ export default function Navbar() {
               Home
             </Link>
             
+            <Link href="/explore" className="text-gray-700 hover:text-black px-3 py-2 text-sm font-medium">
+              Explore
+            </Link>
+            
             {/* Services Dropdown */}
             <div 
               className="relative"
@@ -77,21 +81,24 @@ export default function Navbar() {
               </button>
               
               {/* Services Overlay */}
-              {isServicesOpen && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl z-50">
-                  <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden backdrop-blur-sm">
-                    <div className="p-8">
+              <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-50 transition-all duration-300 ease-in-out ${
+                isServicesOpen 
+                  ? 'opacity-100 visible translate-y-0' 
+                  : 'opacity-0 invisible -translate-y-2'
+              }`} style={{ width: '1200px', height: '300px' }}>
+                <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden backdrop-blur-sm h-full">
+                  <div className="p-8 h-full flex flex-col justify-between">
                       <div className="mb-6">
                         <h3 className="text-xl font-bold text-gray-900 mb-2">Our Services</h3>
                         <p className="text-gray-600">Powerful tools to streamline your workflow and boost productivity</p>
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-6">
+                      <div className="grid grid-cols-2 gap-6 flex-1">
                         {services.map((service, index) => (
                           <Link
                             key={index}
                             href={service.href}
-                            className="group p-4 rounded-xl hover:bg-gray-50 transition-all duration-200"
+                            className="group p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 h-fit"
                           >
                             <div className="flex items-start space-x-4">
                               <div className="text-2xl">{service.icon}</div>
@@ -108,7 +115,7 @@ export default function Navbar() {
                         ))}
                       </div>
                       
-                      <div className="mt-8 pt-6 border-t border-gray-100">
+                      <div className="pt-6 border-t border-gray-100">
                         <div className="flex justify-between items-center">
                           <div>
                             <h4 className="font-semibold text-gray-900">Need something custom?</h4>
@@ -122,12 +129,8 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
-              )}
             </div>
             
-            <Link href="/explore" className="text-gray-700 hover:text-black px-3 py-2 text-sm font-medium">
-              Explore
-            </Link>
             <Link href="/dashboard" className="text-gray-700 hover:text-black px-3 py-2 text-sm font-medium">
               Dashboard
             </Link>
@@ -167,6 +170,10 @@ export default function Navbar() {
                 Home
               </Link>
               
+              <Link href="/explore" className="text-gray-700 hover:text-black block px-3 py-2 text-sm font-medium">
+                Explore
+              </Link>
+              
               {/* Mobile Services Menu */}
               <div className="px-3 py-2">
                 <button 
@@ -196,9 +203,6 @@ export default function Navbar() {
                 )}
               </div>
               
-              <Link href="/explore" className="text-gray-700 hover:text-black block px-3 py-2 text-sm font-medium">
-                Explore
-              </Link>
               <Link href="/dashboard" className="text-gray-700 hover:text-black block px-3 py-2 text-sm font-medium">
                 Dashboard
               </Link>
