@@ -55,10 +55,15 @@ const authHelpers = {
 
 export const signInWithGoogle = async () => {
   try {
+    // Get the current origin, but use environment variable for production
+    const redirectOrigin = process.env.NODE_ENV === 'production' 
+      ? process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+      : window.location.origin;
+    
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/dashboard`
+        redirectTo: `${redirectOrigin}/auth/callback`
       }
     })
     return { data, error }
@@ -70,10 +75,15 @@ export const signInWithGoogle = async () => {
 
 export const signInWithFacebook = async () => {
   try {
+    // Get the current origin, but use environment variable for production
+    const redirectOrigin = process.env.NODE_ENV === 'production' 
+      ? process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+      : window.location.origin;
+    
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'facebook',
       options: {
-        redirectTo: `${window.location.origin}/dashboard`
+        redirectTo: `${redirectOrigin}/auth/callback`
       }
     })
     return { data, error }

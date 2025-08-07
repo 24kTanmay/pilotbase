@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 
 export default function Login() {
@@ -17,6 +17,27 @@ export default function Login() {
 
   const { signIn, signInWithGoogle, signInWithFacebook } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Handle URL error parameters (from OAuth callback)
+  useEffect(() => {
+    const urlError = searchParams.get('error');
+    if (urlError) {
+      switch (urlError) {
+        case 'auth_callback_failed':
+          setError('Authentication failed. Please try again.');
+          break;
+        case 'no_session':
+          setError('Authentication was not completed. Please try again.');
+          break;
+        case 'unexpected_error':
+          setError('An unexpected error occurred. Please try again.');
+          break;
+        default:
+          setError('An error occurred during authentication.');
+      }
+    }
+  }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
