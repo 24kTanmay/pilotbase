@@ -2,13 +2,15 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
-import { auth } from '@/lib/supabase';
+import { auth, signInWithGoogle, signInWithFacebook } from './supabase';
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ data: any; error: any }>;
+  signInWithGoogle: () => Promise<{ data: any; error: any }>;
+  signInWithFacebook: () => Promise<{ data: any; error: any }>;
   signUp: (email: string, password: string, firstName?: string, lastName?: string) => Promise<{ data: any; error: any }>;
   signOut: () => Promise<{ error: any }>;
 }
@@ -18,6 +20,8 @@ const AuthContext = createContext<AuthContextType>({
   session: null,
   loading: true,
   signIn: async () => ({ data: null, error: null }),
+  signInWithGoogle: async () => ({ data: null, error: null }),
+  signInWithFacebook: async () => ({ data: null, error: null }),
   signUp: async () => ({ data: null, error: null }),
   signOut: async () => ({ error: null }),
 });
@@ -91,6 +95,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     session,
     loading,
     signIn,
+    signInWithGoogle,
+    signInWithFacebook,
     signUp,
     signOut,
   };

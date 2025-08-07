@@ -10,7 +10,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Auth helper functions
-export const auth = {
+const authHelpers = {
   signUp: async (email: string, password: string, firstName?: string, lastName?: string) => {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -51,7 +51,41 @@ export const auth = {
       return { data: null, error: { message: 'Network error. Please check your connection and try again.' } }
     }
   },
+}
 
+export const signInWithGoogle = async () => {
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`
+      }
+    })
+    return { data, error }
+  } catch (error) {
+    console.error('Google sign in error:', error)
+    return { data: null, error: { message: 'Failed to sign in with Google. Please try again.' } }
+  }
+}
+
+export const signInWithFacebook = async () => {
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'facebook',
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`
+      }
+    })
+    return { data, error }
+  } catch (error) {
+    console.error('Facebook sign in error:', error)
+    return { data: null, error: { message: 'Failed to sign in with Facebook. Please try again.' } }
+  }
+}
+
+// Combine all auth methods into a single export
+export const auth = {
+  ...authHelpers,
   signOut: async () => {
     const { error } = await supabase.auth.signOut()
     return { error }
