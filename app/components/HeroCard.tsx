@@ -1,19 +1,19 @@
 export default function HeroCard() {
   return (
-    <section className="bg-gradient-to-r from-blue-600 to-purple-700 py-20">
+    <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Welcome to PilotBase
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Streamline your workflow with our innovative platform designed to help you achieve more with less effort.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg text-lg font-semibold shadow-lg transition duration-300">
+            <button className="bg-black text-white hover:bg-gray-800 px-8 py-3 rounded-lg text-lg font-semibold shadow-lg transition duration-300">
               Get Started Free
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold transition duration-300">
+            <button className="border-2 border-black text-black hover:bg-black hover:text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-300">
               Learn More
             </button>
           </div>
