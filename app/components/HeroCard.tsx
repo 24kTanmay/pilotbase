@@ -10,10 +10,10 @@ export default function HeroCard() {
             Streamline your workflow with our innovative platform designed to help you achieve more with less effort.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-black text-white hover:bg-gray-800 px-8 py-3 rounded-lg text-lg font-semibold shadow-lg transition duration-300">
+            <button className="bg-black text-white hover:bg-gray-800 px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition duration-300">
               Get Started Free
             </button>
-            <button className="border-2 border-black text-black hover:bg-black hover:text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-300">
+            <button className="border-2 border-black text-black hover:bg-black hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-300">
               Learn More
             </button>
           </div>

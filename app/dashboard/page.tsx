@@ -155,7 +155,7 @@ function DashboardContent() {
                   ))}
                 </div>
                 <div className="mt-6">
-                  <button className="w-full bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300">
+                  <button className="w-full bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-300">
                     View All Projects
                   </button>
                 </div>

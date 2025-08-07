@@ -173,7 +173,7 @@ export default function Explore() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition duration-300 ${
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition duration-300 ${
                   selectedCategory === category
                     ? 'bg-black text-white'
                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
@@ -241,7 +241,7 @@ export default function Explore() {
                 
                 {/* Action Button */}
                 <div className="mt-4 pt-4 border-t border-gray-200">
-                  <button className="w-full bg-black text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-gray-800 transition duration-300">
+                  <button className="w-full bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition duration-300">
                     View Project
                   </button>
                 </div>
@@ -264,7 +264,7 @@ export default function Explore() {
         {/* Load More */}
         {filteredProjects.length > 0 && (
           <div className="mt-12 text-center">
-            <button className="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition duration-300">
+            <button className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition duration-300">
               Load More Projects
             </button>
           </div>
