@@ -1,7 +1,20 @@
+import { cn } from "@/lib/utils";
+
 export default function HeroCard() {
   return (
-    <section className="bg-white py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-20 relative overflow-hidden">
+      {/* Enhanced Grid Background */}
+      <div
+        className={cn(
+          "absolute inset-0",
+          "[background-size:40px_40px]",
+          "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]"
+        )}
+      />
+      {/* Radial gradient overlay for faded effect */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
             Welcome to PilotBase
@@ -19,11 +32,22 @@ export default function HeroCard() {
           </div>
         </div>
         
-        {/* Hero Card */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+        {/* Extended Grey Container - Why Choose PilotBase */}
+        <div className="mt-12 max-w-6xl mx-auto">
+          <div className="bg-gray-100 rounded-2xl p-8 md:p-12">
+            {/* Why Choose PilotBase Header */}
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                Why Choose PilotBase?
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Join thousands of users who trust our platform for their workflow needs
+              </p>
+            </div>
+            
+            {/* Feature Cards */}
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
+              <div className="text-center bg-white rounded-xl p-6 shadow-sm">
                 <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -33,7 +57,7 @@ export default function HeroCard() {
                 <p className="text-gray-600">Lightning-fast speeds that keep your workflow moving smoothly.</p>
               </div>
               
-              <div className="text-center">
+              <div className="text-center bg-white rounded-xl p-6 shadow-sm">
                 <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -43,7 +67,7 @@ export default function HeroCard() {
                 <p className="text-gray-600">Enterprise-grade security with 99.9% uptime guarantee.</p>
               </div>
               
-              <div className="text-center">
+              <div className="text-center bg-white rounded-xl p-6 shadow-sm">
                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
