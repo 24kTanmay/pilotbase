@@ -3,10 +3,10 @@ export default function HeroCard() {
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
             Welcome to PilotBase
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Streamline your workflow with our innovative platform designed to help you achieve more with less effort.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
