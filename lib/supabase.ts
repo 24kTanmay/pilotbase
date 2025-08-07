@@ -1,7 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase environment variables. Please check your .env.local file.')
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
@@ -22,11 +26,30 @@ export const auth = {
   },
 
   signIn: async (email: string, password: string) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-    return { data, error }
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      
+      if (error) {
+        // Provide more user-friendly error messages
+        let message = error.message
+        if (error.message.includes('Invalid login credentials')) {
+          message = 'Invalid email or password. Please check your credentials and try again.'
+        } else if (error.message.includes('Email not confirmed')) {
+          message = 'Please check your email and click the confirmation link before signing in.'
+        } else if (error.message.includes('Too many requests')) {
+          message = 'Too many login attempts. Please wait a moment before trying again.'
+        }
+        return { data: null, error: { ...error, message } }
+      }
+      
+      return { data, error }
+    } catch (error) {
+      console.error('Sign in error:', error)
+      return { data: null, error: { message: 'Network error. Please check your connection and try again.' } }
+    }
   },
 
   signOut: async () => {

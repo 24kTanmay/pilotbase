@@ -37,14 +37,21 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     // Get initial session
-    auth.getCurrentUser().then(({ user }) => {
+    auth.getCurrentUser().then(({ user, error }) => {
+      if (error) {
+        console.error('Error getting current user:', error);
+      }
       setUser(user);
+      setLoading(false);
+    }).catch((error) => {
+      console.error('Error in getCurrentUser:', error);
       setLoading(false);
     });
 
     // Listen for auth changes
     const { data: { subscription } } = auth.onAuthStateChange(
       async (event, session) => {
+        console.log('Auth state changed:', event, session);
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
@@ -55,8 +62,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const result = await auth.signIn(email, password);
-    return result;
+    try {
+      const result = await auth.signIn(email, password);
+      if (result.error) {
+        console.error('Sign in error:', result.error);
+      } else {
+        console.log('Sign in successful:', result.data);
+      }
+      return result;
+    } catch (error) {
+      console.error('Unexpected sign in error:', error);
+      return { data: null, error: { message: 'An unexpected error occurred during sign in' } };
+    }
   };
 
   const signUp = async (email: string, password: string, firstName?: string, lastName?: string) => {

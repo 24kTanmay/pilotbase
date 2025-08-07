@@ -30,16 +30,35 @@ export default function Login() {
     setLoading(true);
     setError('');
 
+    // Basic validation
+    if (!formData.email || !formData.password) {
+      setError('Please fill in all required fields.');
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.email.includes('@')) {
+      setError('Please enter a valid email address.');
+      setLoading(false);
+      return;
+    }
+
     try {
+      console.log('Attempting to sign in with:', formData.email);
       const { data, error } = await signIn(formData.email, formData.password);
       
       if (error) {
-        setError(error.message);
-      } else {
+        console.error('Login error:', error);
+        setError(error.message || 'An error occurred during login.');
+      } else if (data?.user) {
+        console.log('Login successful, redirecting to dashboard...');
         // Redirect to dashboard on successful login
         router.push('/dashboard');
+      } else {
+        setError('Login failed. Please try again.');
       }
     } catch (err) {
+      console.error('Unexpected error:', err);
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);

@@ -95,7 +95,7 @@ export default function Explore() {
   const getLanguageColor = (language: string) => {
     const colors: { [key: string]: string } = {
       'JavaScript': 'bg-yellow-100 text-yellow-800',
-      'TypeScript': 'bg-blue-100 text-blue-800',
+      'TypeScript': 'bg-gray-100 text-gray-800',
       'Python': 'bg-green-100 text-green-800',
       'CSS': 'bg-purple-100 text-purple-800',
       'YAML': 'bg-gray-100 text-gray-800'
@@ -117,7 +117,7 @@ export default function Explore() {
                 <Link href="/dashboard" className="text-gray-500 hover:text-gray-700 px-1 pt-1 pb-4 text-sm font-medium">
                   Dashboard
                 </Link>
-                <Link href="/explore" className="text-blue-600 border-b-2 border-blue-600 px-1 pt-1 pb-4 text-sm font-medium">
+                <Link href="/explore" className="text-black border-b-2 border-black px-1 pt-1 pb-4 text-sm font-medium">
                   Explore
                 </Link>
                 <a href="#projects" className="text-gray-500 hover:text-gray-700 px-1 pt-1 pb-4 text-sm font-medium">
@@ -130,10 +130,10 @@ export default function Explore() {
             </div>
             
             <div className="flex items-center space-x-4">
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+              <button className="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800">
                 Create Project
               </button>
-              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-semibold">
                 JD
               </div>
             </div>
@@ -160,7 +160,7 @@ export default function Explore() {
             </div>
             <input
               type="text"
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-black focus:border-black"
               placeholder="Search projects, technologies, or keywords..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -175,7 +175,7 @@ export default function Explore() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition duration-300 ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-black text-white'
                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                 }`}
               >
@@ -190,7 +190,7 @@ export default function Explore() {
           {filteredProjects.map((project) => (
             <div key={project.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
               {/* Project Image */}
-              <div className="h-48 bg-gradient-to-r from-blue-400 to-purple-500"></div>
+              <div className="h-48 bg-gradient-to-r from-gray-400 to-black"></div>
               
               {/* Project Content */}
               <div className="p-6">
@@ -241,7 +241,7 @@ export default function Explore() {
                 
                 {/* Action Button */}
                 <div className="mt-4 pt-4 border-t border-gray-200">
-                  <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-blue-700 transition duration-300">
+                  <button className="w-full bg-black text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-gray-800 transition duration-300">
                     View Project
                   </button>
                 </div>
