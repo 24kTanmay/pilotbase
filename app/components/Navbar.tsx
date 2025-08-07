@@ -205,12 +205,16 @@ export default function Navbar() {
               <a href="#contact" className="text-gray-700 hover:text-black block px-3 py-2 text-sm font-medium">
                 Contact
               </a>
-              <Link href="/login" className="border border-gray-300 text-gray-700 hover:border-black hover:text-black block px-3 py-2 text-sm font-medium rounded mx-3 text-center">
-                Login
-              </Link>
-              <Link href="/register" className="w-full text-center bg-black hover:bg-gray-800 text-white px-3 py-2 text-sm font-medium rounded mx-3">
-                Get Started
-              </Link>
+              
+              {/* Mobile Auth Buttons - Separated and styled like Dub */}
+              <div className="pt-4 mt-4 border-t border-gray-200 px-3 space-y-3">
+                <Link href="/login" className="w-full text-center border border-gray-300 text-gray-700 hover:border-black hover:text-black py-3 text-sm font-medium rounded-lg transition-colors block">
+                  Log in
+                </Link>
+                <Link href="/register" className="w-full text-center bg-black hover:bg-gray-800 text-white py-3 text-sm font-medium rounded-lg transition-colors block">
+                  Sign Up
+                </Link>
+              </div>
             </div>
           </div>
         )}
